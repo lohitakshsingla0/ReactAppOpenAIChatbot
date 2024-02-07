@@ -40,3 +40,99 @@
 .read-the-docs {
   color: #888;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+/* Main chat application layout */
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full screen height */
+  width: 100vh;
+  background-color: #f5f5f5; /* Light grey background */
+}
+
+/* Chat container and its positioning */
+.MainContainer {
+  width: 100%;
+  max-width: 600px; /* Maximum width of the chat container */
+  background-color: #fff; /* White background for chat area */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+  border-radius: 8px; /* Rounded corners for the chat container */
+}
+
+.ChatContainer {
+  display: flex;
+  flex-direction: column;
+  height: 80vh; /* Relative height */
+  position: relative; /* For absolute positioning of children */
+}
+
+/* Message list styling */
+.MessageList {
+  overflow-y: auto; /* Allow scrolling */
+  padding: 20px;
+}
+
+.Message {
+  max-width: 75%; /* Max width of message bubbles */
+  margin-bottom: 10px; /* Spacing between messages */
+  padding: 10px; /* Padding inside message bubbles */
+  border-radius: 20px; /* Rounded corners for message bubbles */
+  color: white; /* Text color */
+  word-wrap: break-word; /* Ensure long words do not overflow */
+}
+
+/* Differentiating between sent and received messages */
+.Message.sent {
+  background-color: #007bff; /* Blue for sent messages */
+  margin-left: auto; /* Align to the right */
+}
+
+.Message.received {
+  background-color: #e5e5ea; /* Light grey for received messages */
+  color: black; /* Text color for received messages */
+}
+
+/* Typing indicator styling */
+.TypingIndicator {
+  font-style: italic;
+  color: #aaa; /* Light grey color */
+}
+
+/* Message input box styling */
+.MessageInput {
+  border-top: 1px solid #eee; /* Light grey border */
+  padding: 10px; /* Padding around the input box */
+  background-color: #fafafa; /* Slightly off-white background */
+}
+
+.MessageInput input {
+  width: 100%; /* Full width */
+  padding: 10px; /* Comfortable padding */
+  border: 1px solid #ddd; /* Subtle border */
+  border-radius: 20px; /* Rounded corners */
+  font-size: 16px; /* Readable text size */
+}
+
+.MessageInput input:focus {
+  outline: none; /* Remove default focus outline */
+  border-color: #007bff; /* Highlight with a blue border */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .MainContainer {
+    max-width: 90%; /* More screen width on smaller devices */
+  }
+}
