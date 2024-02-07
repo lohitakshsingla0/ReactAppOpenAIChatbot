@@ -3,7 +3,7 @@ import './App.css'
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import { MainContainer, ChatContainer, MessageList, Message, MessageInput, TypingIndicator } from '@chatscope/chat-ui-kit-react';
 
-const API_KEY = "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";
+// const API_KEY = "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";
 
 //
 const systemMessage = { //  Explain things like you're talking to a software professional with 5 years of experience.
@@ -64,25 +64,50 @@ function App() {
       ]
     }
 
-    await fetch("https://api.openai.com/v1/chat/completions",
-    {
+
+    await fetch("/.netlify/functions/openaiProxy", {
       method: "POST",
       headers: {
-        "Authorization": "Bearer " + API_KEY,
         "Content-Type": "application/json"
       },
       body: JSON.stringify(apiRequestBody)
-    }).then((data) => {
-      return data.json();
-    }).then((data) => {
-      console.log(data);
-      setMessages([...chatMessages, {
-        message: data.choices[0].message.content,
-        sender: "ChatGPT"
-      }]);
-      setIsTyping(false);
-    });
+    }).then(response => response.json())
+      .then(data => {
+        console.log(data);
+        const responseData = data.choices[0].message.content; // Adjust based on how your serverless function formats the response
+        setMessages([...chatMessages, {
+          message: responseData,
+          sentTime: "just now",
+          sender: "ChatGPT",
+          direction: 'incoming'
+        }]);
+        setIsTyping(false);
+      }).catch(error => {
+        console.error("Error processing message:", error);
+        setIsTyping(false);
+      });
   }
+
+
+  //   await fetch("https://api.openai.com/v1/chat/completions",
+  //   {
+  //     method: "POST",
+  //     headers: {
+  //       "Authorization": "Bearer " + API_KEY,
+  //       "Content-Type": "application/json"
+  //     },
+  //     body: JSON.stringify(apiRequestBody)
+  //   }).then((data) => {
+  //     return data.json();
+  //   }).then((data) => {
+  //     console.log(data);
+  //     setMessages([...chatMessages, {
+  //       message: data.choices[0].message.content,
+  //       sender: "ChatGPT"
+  //     }]);
+  //     setIsTyping(false);
+  //   });
+  // }
 
   return (
     <div className="App">
