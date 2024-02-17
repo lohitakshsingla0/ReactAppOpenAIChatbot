@@ -7,7 +7,7 @@ import { MainContainer, ChatContainer, MessageList, Message, MessageInput, Typin
 
 //
 const systemMessage = { //  Explain things like you're talking to a software professional with 5 years of experience.
-  "role": "system", "content": "Explain things like you're talking to a software professional with 2 years of experience."
+  "role": "system", "content": "Explain things like you're talking to a client for software consulting company."
 }
 
 function App() {
