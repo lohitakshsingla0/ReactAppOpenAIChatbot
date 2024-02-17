@@ -13,7 +13,7 @@ const systemMessage = { //  Explain things like you're talking to a software pro
 function App() {
   const [messages, setMessages] = useState([
     {
-      message: "Hello, I'm ChatGPT! Ask me anything!",
+      message: "Hello, I'm your AI Consultant for 5X Consulting! Ask me anything!",
       sentTime: "just now",
       sender: "ChatGPT"
     }
